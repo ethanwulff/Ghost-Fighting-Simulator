@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>TAB</title>
+    <style>
+
+        body {
+            text-align: center;
+            background-color: palevioletred;
+            
+        }
+
+        button {
+            border-radius: 20px;
+        }
+
+        #border {
+            border: 10px double red;
+        }
+        
+        .hidden {
+            display: none;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div id="border">
+        <h1>Ghost Fighting Simulator</h1>
+        <p>Click a button to hear the noises</p>
+        <button id="boy" type=" button">boyoyoing</button>
+        <button id="spook" type="button">spooky</button>
+    </div>
+
+    <audio id="boyAudio">
+
+        <source src="somethingshort.wav" type="audio/wav">
+
+    </audio>
+
+    <img class="hidden" id="ghostImg" src="ghostclip.jpg" alt="a spooky ghost">
+    <img class="hidden" id="boyImg" src="dude.jpg" alt="a yoyoing boy">
+
+    <audio id="spookAudio">
+
+        <source src="haunting.wav" type="audio/wav">
+
+    </audio>
+
+    <script>
+        // Get audio, store them in variables
+        let boyAudio = document.getElementById("boyAudio");
+        let spookAudio = document.getElementById("spookAudio");
+
+        // Get buttons, store them in valiables
+        let boy = document.getElementById("boy");
+        let spook = document.getElementById("spook");
+
+        // Get Images, store them in variables
+        let ghostImg = document.getElementById("ghostImg");
+        let boyImg = document.getElementById("boyImg");
+
+
+        // Adds event listeners to buttons
+        boy.addEventListener("click", playBoy);
+        spook.addEventListener("click", playSpook);
+
+        // Play audio functions
+        function playBoy() {
+            boyAudio.play();
+        }
+
+        function playSpook() {
+            spookAudio.play();
+        }
+
+        // Displays given image if audio is playing
+        function displayImage(audio, img) {
+            if (audio.paused == true) {
+                img.classList.add("hidden");
+            } else {
+                img.classList.remove("hidden")
+            }
+            return audio;
+        }
+
+        setInterval(function () {
+            displayImage(boyAudio, boyImg);
+        }, 200);
+
+        setInterval(function () {
+            displayImage(spookAudio, ghostImg);
+        }, 200);
+
+    </script>
+
+</body>
+
+</html>
